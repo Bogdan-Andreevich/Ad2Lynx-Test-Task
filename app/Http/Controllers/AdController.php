@@ -55,7 +55,12 @@ class AdController extends Controller
 
             return redirect()->route('home.index');
         } catch (\Exception $e) {
-            abort(500);
+            return redirect()->back()
+                ->withInput()
+                ->withErrors([
+                    'endpoint1' => 'Invalid endpoint URL',
+                    'endpoint2' => 'Invalid endpoint URL',
+                ]);
         }
     }
 }
